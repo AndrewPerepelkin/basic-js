@@ -1,8 +1,12 @@
 const CustomError = require("../extensions/custom-error");
 
 class VigenereCipheringMachine {
-  constructor(reverse) {
-    this.rev = reverse;
+  constructor(mod) {
+    if (typeof mod === 'boolean') {
+      this.reverce = mod;
+    } else {
+      this.reverce = true;
+    }
   }
 
   encrypt(message, key) {
@@ -36,7 +40,7 @@ class VigenereCipheringMachine {
       }
     });
 
-    if (this.rev) {
+    if (!this.reverce) {
       return result.reverse().join('');
     } else {
       return result.join('');
@@ -74,7 +78,7 @@ class VigenereCipheringMachine {
       }
     });
 
-    if (this.rev) {
+    if (!this.reverce) {
       return result.reverse().join('');
     } else {
       return result.join('');
